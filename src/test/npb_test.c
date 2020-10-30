@@ -3,33 +3,16 @@
 #include <test/test.h>
 
 
-void printdouble()
-{
-    double a = 3.1415;
-    double b = 0.3312;
-    printf("%8.4f      %8.4f\n", a, b);
-}
 
-void dbpone(int* a, int* b)
-{
-    printf("inside ep! %d   %d\n", *a, *b);
-}
-
-void debugdummy()
-{
-}
-
-void printvalue(double* a, double* b, double* c, double* d)
-{
-    printf("%16.14f  -----   %16.14f    ------- %16.14f   ---------   %16.14f\n", *a, *b, *c, *d);
-}
 
 extern void npb_entry();
 
 static int
 callffunc(int argc, char** argv)
 {
-    npb_entry();
+    for(int i = 0;i < 10; i++){
+        npb_entry();
+    }
     return 0;
 }
 
