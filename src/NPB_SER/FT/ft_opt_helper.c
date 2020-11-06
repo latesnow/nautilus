@@ -1,5 +1,17 @@
 #include <nautilus/libccompat.h>
 
+/*
+void _gfortran_os_error()
+{
+    printf("_gfortran_os_error called\n");
+}
+
+void _gfortran_runtime_error_at()
+{
+    printf("_gfortran_runtime_error_at called\n");
+}
+*/
+
 void write_1000()
 {
     printf("\n\n  NAS Parallel Benchmarks (NPB3.3-SER)"
@@ -37,6 +49,15 @@ void write_120(char* msg, int* len)
 void write_appft_83()
 {
     printf("FT subroutine timers\n");
+}
+
+void write_appft_40(char* msg, unsigned long* t)
+{
+    char buf[27] = {'\0'};
+    for(int i =0;i < 26;i++){
+        buf[i] = msg[i];
+    }
+    printf("%s %lu\n", buf, *t);
 }
 
 void write_auxfuct_30(int* iterN, double* rp, double* ip)

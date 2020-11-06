@@ -1,7 +1,15 @@
+         module mainarrays
+            double precision, allocatable, dimension(:,:,:) :: twiddle
+            double complex, allocatable, dimension(:,:,:) :: xnt,y
+            double complex, allocatable, dimension(:) :: pad1, pad2
+         end module
+
+            
          subroutine appft (niter, total_time, verified)
+         use mainarrays
          implicit none
          include  'global.h'
-         integer niter
+         integer niter, allocatestatus
          integer*8 total_time
          logical verified
 !
@@ -9,13 +17,24 @@
 !
          integer i, j, k, kt, n12, n22, n32, ii, jj, kk, ii2, ik2
          double precision ap
-         double precision twiddle(nx+1,ny,nz)
-        
-         double complex xnt(nx+1,ny,nz),y(nx+1,ny,nz),
-     &                  pad1(128),pad2(128)
-         common /mainarrays/ xnt,pad1,y,pad2,twiddle
+!         double precision, allocatable, dimension(:,:,:) :: twiddle
+!         double complex, allocatable, dimension(:,:,:) :: xnt,y
+!         double complex, allocatable, dimension(:) :: pad1, pad2
+!         common /mainarrays/ xnt,pad1,y,pad2,twiddle
 
          double complex exp1(nx), exp2(ny), exp3(nz)
+!-------------------------initialize global arrays-------------------------
+ 100     allocate(twiddle(nx+1, ny, nz), STAT=allocatestatus) 
+         if (allocatestatus /= 0) goto 100
+ 200     allocate(xnt(nx+1, ny, nz), STAT=allocatestatus)
+         if (allocatestatus /= 0) goto 200
+ 300     allocate(y(nx+1, ny, nz), STAT=allocatestatus)
+         if (allocatestatus /= 0) goto 300
+ 400     allocate(pad1(128), STAT=allocatestatus)
+         if (allocatestatus /= 0) goto 400
+ 500     allocate(pad2(128), STAT=allocatestatus)
+         if (allocatestatus /= 0) goto 500
+
 
          do i=1,15
            call timer_clear(i)
@@ -78,6 +97,14 @@
          call timer_stop(1)
 
          total_time = timer_read(1)
+!
+!deallocate mainarrays
+!
+         deallocate(twiddle, STAT = allocatestatus)
+         deallocate(xnt, STAT = allocatestatus)
+         deallocate(y, STAT = allocatestatus)
+         deallocate(pad1, STAT = allocatestatus)
+         deallocate(pad2, STAT = allocatestatus)
          if (.not.timers_enabled) return
 
 c         print*,'FT subroutine timers '    
@@ -95,6 +122,35 @@ c         write(*,40) 'twiddle                   ', timer_read(13)
 c         write(*,40) 'verify                    ', timer_read(14)
 c         write(*,40) 'fftXYZ                    ', timer_read(15)
 c         write(*,40) 'Benchmark time            ', total_time
+         call write_appft_83
+         call write_appft_40("FT total                  ", 
+     >                       timer_read(1))
+         call write_appft_40("WarmUp time               ", 
+     >                       timer_read(2))
+         call write_appft_40("fftXYZ body               ", 
+     >                       timer_read(3))
+         call write_appft_40("Swarztrauber              ", 
+     >                       timer_read(4))
+         call write_appft_40("X time                    ", 
+     >                       timer_read(7))
+         call write_appft_40("Y time                    ", 
+     >                       timer_read(8))
+         call write_appft_40("Z time                    ", 
+     >                       timer_read(9))
+         call write_appft_40("CalculateChecksum         ", 
+     >                       timer_read(10))
+         call write_appft_40("evolve                    ", 
+     >                       timer_read(11))
+         call write_appft_40("compute_initial_conditions", 
+     >                       timer_read(12))
+         call write_appft_40("twiddle                   ", 
+     >                       timer_read(13))
+         call write_appft_40("verify                    ", 
+     >                       timer_read(14))
+         call write_appft_40("fftXYZ                    ", 
+     >                       timer_read(15))
+         call write_appft_40("Benchmark time            ", 
+     >                       total_time)
    40    format(' ',A26,' =',F9.4)
 
          return
