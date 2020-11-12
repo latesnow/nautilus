@@ -111,7 +111,7 @@ c---------------------------------------------------------------------
         end do
         csum = csum/dble(d1*d2*d3)
 c        write(*,30) iterN, csum
-        call write_auxfuct_30(iterN, REALPART(csum), IMAGPART(csum))
+c        call write_auxfuct_30(iterN, REALPART(csum), IMAGPART(csum))
  30     format (' T =',I5,5X,'Checksum =',1P2D22.12)
       return
       end

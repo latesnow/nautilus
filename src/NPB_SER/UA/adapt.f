@@ -78,7 +78,7 @@ c         indices need to be regenerated on the new grid.
 c      write(*,1000) step, irefine, icoarsen, nelt
 c 1000 format('Step ',i4, ': elements refined, merged, total:',
 c     &       i6, 1X , i6, 1X, i6)
-      call write_adapt_1000(step, irefine, icoarsen, nelt)
+c      call write_adapt_1000(step, irefine, icoarsen, nelt)
 
 c.....mt_to_id(miel) takes as argument the morton index  and returns the actual 
 c                    element index

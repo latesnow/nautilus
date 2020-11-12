@@ -94,7 +94,7 @@ c         end if
      >         istep .eq. itmax .or.
      >         istep .eq. 1) then
 c            if (niter .gt. 1) write( *, 200) istep
-            if (niter .gt. 1) call write_ssor_200(istep)
+c            if (niter .gt. 1) call write_ssor_200(istep)
  200        format(' Time step ', i4)
          endif
  

@@ -66,7 +66,7 @@ c            close(2)
 c         else
 c            timers_enabled = .false.
 c         endif
-         timers_enabled = .true.
+         timers_enabled = .false.
 
          niter=niter_default
 

@@ -129,3 +129,36 @@ void write_debug_4(double* u, double* ue)
 {
     printf("%20.13e %20.13e\n", *u, *ue);
 }
+
+void write_bt_800()
+{
+    printf("  SECTION   Time (secs)\n");
+}
+
+void write_bt_810(char* t_name, int* len, unsigned long* trecs, double* percent)
+{
+    /*
+    char buf[9];
+    for(int i = 0;i < 9;i++){
+        buf[i] = '\0';
+    }
+    for(int i = 0;i < *len;i++){
+        buf[i] = t_name[i];
+    }
+    */
+    printf("  :%lu  (%6.2f%%)\n",  *trecs, *percent);
+}
+
+void write_bt_820(char* t_name, int* len, unsigned long* t, double* percent)
+{
+    /*
+    char buf[9];
+    for(int i = 0;i < 9;i++){
+        buf[i] = '\0';
+    }
+    for(int i = 0;i < *len;i++){
+        buf[i] = t_name[i];
+    }
+    */
+    printf("    -->  :%lu  (%6.2f%%)\n",  *t, *percent);
+}

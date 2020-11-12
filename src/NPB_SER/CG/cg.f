@@ -337,9 +337,9 @@ c---------------------------------------------------------------------
 
          zeta = shift + 1.0d0 / norm_temp1
 c         if( it .eq. 1 ) write( *,9000 )
-         if( it .eq. 1 ) call write_9000
+c         if( it .eq. 1 ) call write_9000
 c         write( *,9001 ) it, rnorm, zeta
-         call write_9001(it, rnorm, zeta)
+c         call write_9001(it, rnorm, zeta)
 
  9000    format( /,'   iteration           ||r||                 zeta' )
  9001    format( 4x, i5, 7x, e20.14, f20.13 )
@@ -436,6 +436,7 @@ c---------------------------------------------------------------------
       if (tmax .eq. 0.0) tmax = 1.0
 
 c      write(*,800)
+      call write_cg_800
  800  format('  SECTION   Time (secs)')
       do i=1, t_last
          t = timer_read(i)

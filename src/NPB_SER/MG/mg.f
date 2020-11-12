@@ -257,7 +257,7 @@ c     >     ' Initialization time: ',tinit, ' seconds'
          if (it.eq.1 .or. it.eq.nit .or. mod(it,5).eq.0) then
 c            write(*,80) it
 c   80       format('  iter ',i3)
-            call write_80(it)
+c            call write_80(it)
          endif
          if (timeron) call timer_start(T_mg3P)
          call mg3P(u,v,r,a,c,n1,n2,n3,k)

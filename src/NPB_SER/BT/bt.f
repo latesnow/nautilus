@@ -155,7 +155,7 @@ c---------------------------------------------------------------------
           if (mod(step, 20) .eq. 0 .or. 
      >        step .eq. 1) then
 c             write(*, 200) step
-             call write_bt_200(step)
+c             call write_bt_200(step)
  200         format(' Time step ', i4)
           endif
 

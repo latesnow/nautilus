@@ -109,3 +109,32 @@ void write_debug_004(double* ratio)
 {
     printf("ratio = %20.13e\n", *ratio);
 }
+
+void write_cg_800()
+{
+    printf("  SECTION   Time (secs)\n");
+}
+
+void write_cg_810(char* t_name, int* len, unsigned long* trecs, double* percent)
+{
+    char buf[9];
+    for(int i = 0;i < 9;i++){
+        buf[i] = '\0';
+    }
+    for(int i = 0;i < *len;i++){
+        buf[i] = t_name[i];
+    }
+    printf("  %s:%lu  (%6.2f%)\n", buf, *trecs, *percent);
+}
+
+void write_cg_820(char* t_name, int* len, unsigned long* t, double* percent)
+{
+    char buf[9];
+    for(int i = 0;i < 9;i++){
+        buf[i] = '\0';
+    }
+    for(int i = 0;i < *len;i++){
+        buf[i] = t_name[i];
+    }
+    printf("    -->  %s:%lu  (%6.2f%)\n", buf, *t, *percent);
+}
