@@ -160,7 +160,7 @@ c---------------------------------------------------------------------
 
       call w_c_print_results('LU',class, nx0,
      >  ny0, nz0, itmax,
-     >  maxtime, mflops,verified)
+     >  maxtime, verified)
 
 c---------------------------------------------------------------------
 c      More timers
